@@ -1,5 +1,7 @@
 package com.travix.medusa.busyflights.domain.crazyair;
 
+import java.util.Arrays;
+
 public class CrazyAirRequest {
 
     private String origin;
@@ -46,5 +48,20 @@ public class CrazyAirRequest {
 
     public void setPassengerCount(final int passengerCount) {
         this.passengerCount = passengerCount;
+    }
+
+    public Object[] parameters() {
+        return Arrays.asList(origin, destination).toArray();
+    }
+
+    @Override
+    public String toString() {
+        return "CrazyAirRequest{" +
+                "origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", departureDate='" + departureDate + '\'' +
+                ", returnDate='" + returnDate + '\'' +
+                ", passengerCount=" + passengerCount +
+                '}';
     }
 }

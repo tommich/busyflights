@@ -1,3 +1,25 @@
+**My Solution Notes**
+
+Existing code changes on domain classes:
+- Added SearchEngineResponse interface that is implemented by Domain classes. It enabled me to
+    convert SearchEngineResponses to one common response - BusyFlightsResponse 
+    (it enabled calculating final values at the same time).
+
+I've added some TODO tags in different places across the code 
+    (please search for "TODO" in the whole project).
+    
+Not mentioned there are these issues: 
+- Validation can be improved - displaying appropriate message errors on the front-end.
+- Create unit tests that check if the Response classes are converted to BusyFlightResponse
+    in an appropriate way and if the results from BusyFlightsService are sorted in an appropriate order.
+- Hide RequestSender behind an interface.
+- Create some javadocs, especially for RequestSender, ParamsProvider, SearchEngineResponse, BusyFlightsOfferComparator 
+        (classes that can be used to add new engines and modify program behaviour).
+
+
+
+
+
 **Travix - Problem to be solved**
 
 **Background:**

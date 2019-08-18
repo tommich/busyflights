@@ -1,14 +1,27 @@
 package com.travix.medusa.busyflights.domain.toughjet;
 
-public class ToughJetResponse {
+import com.travix.medusa.busyflights.SearchEngineResponse;
+import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 
+import javax.validation.constraints.NotNull;
+
+public class ToughJetResponse implements SearchEngineResponse {
+
+    @NotNull
     private String carrier;
+    @NotNull
     private double basePrice;
+    @NotNull
     private double tax;
+    @NotNull
     private double discount;
+    @NotNull
     private String departureAirportName;
+    @NotNull
     private String arrivalAirportName;
+    @NotNull
     private String outboundDateTime;
+    @NotNull
     private String inboundDateTime;
 
     public String getCarrier() {
@@ -73,5 +86,33 @@ public class ToughJetResponse {
 
     public void setInboundDateTime(final String inboundDateTime) {
         this.inboundDateTime = inboundDateTime;
+    }
+
+
+    @Override
+    public String toString() {
+        return "ToughJetResponse{" +
+                "carrier='" + carrier + '\'' +
+                ", basePrice=" + basePrice +
+                ", tax=" + tax +
+                ", discount=" + discount +
+                ", departureAirportName='" + departureAirportName + '\'' +
+                ", arrivalAirportName='" + arrivalAirportName + '\'' +
+                ", outboundDateTime='" + outboundDateTime + '\'' +
+                ", inboundDateTime='" + inboundDateTime + '\'' +
+                '}';
+    }
+
+    @Override
+    public BusyFlightsResponse toBusyFlightsResponse() {
+        return new BusyFlightsResponse(
+                this.getCarrier(),
+                "ToughJet",
+                this.getBasePrice() + this.getBasePrice() * tax - this.getDiscount(),
+                this.getDepartureAirportName(),
+                this.getArrivalAirportName(),
+                this.getOutboundDateTime(),
+                this.getInboundDateTime()
+        );
     }
 }

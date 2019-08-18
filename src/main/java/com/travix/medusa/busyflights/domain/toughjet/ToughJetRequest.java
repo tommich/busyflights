@@ -1,5 +1,7 @@
 package com.travix.medusa.busyflights.domain.toughjet;
 
+import java.util.Arrays;
+
 public class ToughJetRequest {
 
     private String from;
@@ -46,5 +48,20 @@ public class ToughJetRequest {
 
     public void setNumberOfAdults(final int numberOfAdults) {
         this.numberOfAdults = numberOfAdults;
+    }
+
+    public Object[] parameters() {
+        return Arrays.asList(from, to).toArray();
+    }
+
+    @Override
+    public String toString() {
+        return "ToughJetRequest{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", outboundDate='" + outboundDate + '\'' +
+                ", inboundDate='" + inboundDate + '\'' +
+                ", numberOfAdults=" + numberOfAdults +
+                '}';
     }
 }

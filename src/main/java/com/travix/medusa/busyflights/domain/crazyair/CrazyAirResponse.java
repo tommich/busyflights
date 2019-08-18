@@ -1,13 +1,25 @@
 package com.travix.medusa.busyflights.domain.crazyair;
 
-public class CrazyAirResponse {
+import com.travix.medusa.busyflights.SearchEngineResponse;
+import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 
+import javax.validation.constraints.NotNull;
+
+public class CrazyAirResponse implements SearchEngineResponse {
+
+
+    @NotNull
     private String airline;
+    @NotNull
     private double price;
     private String cabinclass;
+    @NotNull
     private String departureAirportCode;
+    @NotNull
     private String destinationAirportCode;
+    @NotNull
     private String departureDate;
+    @NotNull
     private String arrivalDate;
 
     public String getAirline() {
@@ -64,5 +76,31 @@ public class CrazyAirResponse {
 
     public void setArrivalDate(final String arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    @Override
+    public String toString() {
+        return "CrazyAirResponse{" +
+                "airline='" + airline + '\'' +
+                ", price=" + price +
+                ", cabinclass='" + cabinclass + '\'' +
+                ", departureAirportCode='" + departureAirportCode + '\'' +
+                ", destinationAirportCode='" + destinationAirportCode + '\'' +
+                ", departureDate='" + departureDate + '\'' +
+                ", arrivalDate='" + arrivalDate + '\'' +
+                '}';
+    }
+
+    @Override
+    public BusyFlightsResponse toBusyFlightsResponse() {
+        return new BusyFlightsResponse(
+                this.getAirline(),
+                "CrazyAir",
+                this.getPrice(),
+                this.getDepartureAirportCode(),
+                this.getDestinationAirportCode(),
+                this.getDepartureDate(),
+                this.getArrivalDate()
+        );
     }
 }
