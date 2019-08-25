@@ -4,6 +4,7 @@ import com.travix.medusa.busyflights.SearchEngineResponse;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 public class CrazyAirResponse implements SearchEngineResponse {
 
@@ -96,7 +97,7 @@ public class CrazyAirResponse implements SearchEngineResponse {
         return new BusyFlightsResponse(
                 this.getAirline(),
                 "CrazyAir",
-                this.getPrice(),
+                BigDecimal.valueOf(this.getPrice()).setScale(2, BigDecimal.ROUND_HALF_UP),
                 this.getDepartureAirportCode(),
                 this.getDestinationAirportCode(),
                 this.getDepartureDate(),

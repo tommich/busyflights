@@ -4,6 +4,7 @@ import com.travix.medusa.busyflights.SearchEngineResponse;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 public class ToughJetResponse implements SearchEngineResponse {
 
@@ -108,7 +109,8 @@ public class ToughJetResponse implements SearchEngineResponse {
         return new BusyFlightsResponse(
                 this.getCarrier(),
                 "ToughJet",
-                this.getBasePrice() + this.getBasePrice() * tax - this.getDiscount(),
+                BigDecimal.valueOf(this.getBasePrice() + this.getBasePrice() * tax - this.getDiscount())
+                        .setScale(2, BigDecimal.ROUND_HALF_UP),
                 this.getDepartureAirportName(),
                 this.getArrivalAirportName(),
                 this.getOutboundDateTime(),

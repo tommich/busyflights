@@ -19,7 +19,6 @@ public class BusyFlightsRequest {
     @NotNull
     private String returnDate;
 
-    //TODO send errors to the front end together with the messages
     @Min(value = 1, message = "numberOfPassangers parameter cannot be lower than 1")
     @Max(value = 4, message = "numberOfPassangers parameter cannot be greater than 4")
     private int numberOfPassengers;

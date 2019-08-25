@@ -12,6 +12,7 @@ import com.travix.medusa.busyflights.web.toughjet.ToughJetParamsProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -54,7 +55,8 @@ public class BusyFlightsServiceImpl implements BusyFlightsService {
                         .collect(Collectors.toList());
 
         // Final prices can be calculated as the number of passengers * unit price.
-        responses.forEach(it -> it.setFare(it.getFare() * numberOfPassengers));
+        responses.forEach(it -> it.setFare(it.getFare()
+                .multiply(BigDecimal.valueOf(numberOfPassengers))));
         return responses;
     }
 }

@@ -1,19 +1,20 @@
 package com.travix.medusa.busyflights.domain.busyflights;
 
+import java.math.BigDecimal;
+
 public final class BusyFlightsResponse {
 
     private String airline;
     private String supplier;
-    private Double fare;
+    private BigDecimal fare;
     private String departureAirportCode;
     private String destinationAirportCode;
     private String departureDate;
     private String arrivalDate;
 
-    public BusyFlightsResponse(String airline, String supplier, Double fare, String departureAirportCode, String destinationAirportCode, String departureDate, String arrivalDate) {
+    public BusyFlightsResponse(String airline, String supplier, BigDecimal fare, String departureAirportCode, String destinationAirportCode, String departureDate, String arrivalDate) {
         this.airline = airline;
         this.supplier = supplier;
-        //TODO round up to 2 decimal places
         this.fare = fare;
         this.departureAirportCode = departureAirportCode;
         this.destinationAirportCode = destinationAirportCode;
@@ -29,7 +30,7 @@ public final class BusyFlightsResponse {
         this.supplier = supplier;
     }
 
-    public void setFare(Double fare) {
+    public void setFare(BigDecimal fare) {
         this.fare = fare;
     }
 
@@ -57,7 +58,7 @@ public final class BusyFlightsResponse {
         return supplier;
     }
 
-    public Double getFare() {
+    public BigDecimal getFare() {
         return fare;
     }
 
