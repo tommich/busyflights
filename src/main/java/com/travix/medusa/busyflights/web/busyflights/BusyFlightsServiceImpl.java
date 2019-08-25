@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,7 +27,6 @@ public class BusyFlightsServiceImpl implements BusyFlightsService {
 
     @Override
     public List<BusyFlightsResponse> getBusyFlights(BusyFlightsRequest request) {
-        //TODO: Make sending the request async and then wait for all the responses before sorting
         List<RequestSender> requestSenders = Arrays.asList(
                 new RequestSender<>(new CrazyAirParamsProvider(), CrazyAirResponse[].class),
                 new RequestSender<>(new ToughJetParamsProvider(), ToughJetResponse[].class)
@@ -40,8 +41,15 @@ public class BusyFlightsServiceImpl implements BusyFlightsService {
 
         List<BusyFlightsResponse> responses =
                 requestSenders.stream()
-                        .flatMap(requestSender -> Stream.of(requestSender.sendRequest(request))
-                                .map(SearchEngineResponse::toBusyFlightsResponse))
+                        .map(requestSender ->
+                                CompletableFuture.supplyAsync(() ->
+                                        requestSender.sendRequest(request)
+                                ).thenApply(searchEngineResponses -> Stream.of(searchEngineResponses)
+                                        .map(SearchEngineResponse::toBusyFlightsResponse)
+                                        .collect(Collectors.toList())
+                                ))
+                        .map(CompletableFuture::join)
+                        .flatMap(Collection::stream)
                         .sorted(busyFlightsOfferComparator)
                         .collect(Collectors.toList());
 
