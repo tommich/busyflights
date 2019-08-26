@@ -1,13 +1,18 @@
 package com.travix.medusa.busyflights.domain.crazyair;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Arrays;
 
 public class CrazyAirRequest {
 
     private String origin;
     private String destination;
-    private String departureDate;
-    private String returnDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate departureDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate returnDate;
     private int passengerCount;
 
     public String getOrigin() {
@@ -26,19 +31,19 @@ public class CrazyAirRequest {
         this.destination = destination;
     }
 
-    public String getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(final String departureDate) {
+    public void setDepartureDate(final LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 
-    public String getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(final String returnDate) {
+    public void setReturnDate(final LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 

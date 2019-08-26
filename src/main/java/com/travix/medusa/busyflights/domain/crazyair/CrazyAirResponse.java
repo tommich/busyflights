@@ -3,12 +3,16 @@ package com.travix.medusa.busyflights.domain.crazyair;
 import com.travix.medusa.busyflights.SearchEngineResponse;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class CrazyAirResponse implements SearchEngineResponse {
 
 
+    //TODO response validation
     @NotNull
     private String airline;
     @NotNull
@@ -18,10 +22,9 @@ public class CrazyAirResponse implements SearchEngineResponse {
     private String departureAirportCode;
     @NotNull
     private String destinationAirportCode;
+    private LocalDateTime departureDate;
     @NotNull
-    private String departureDate;
-    @NotNull
-    private String arrivalDate;
+    private LocalDateTime arrivalDate;
 
     public String getAirline() {
         return airline;
@@ -63,19 +66,19 @@ public class CrazyAirResponse implements SearchEngineResponse {
         this.destinationAirportCode = destinationAirportCode;
     }
 
-    public String getDepartureDate() {
+    public @NotNull LocalDateTime getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(final String departureDate) {
+    public void setDepartureDate(final LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }
 
-    public String getArrivalDate() {
+    public @NotNull LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(final String arrivalDate) {
+    public void setArrivalDate(final LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 

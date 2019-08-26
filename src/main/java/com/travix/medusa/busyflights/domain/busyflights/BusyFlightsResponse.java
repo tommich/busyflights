@@ -1,6 +1,9 @@
 package com.travix.medusa.busyflights.domain.busyflights;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public final class BusyFlightsResponse {
 
@@ -9,10 +12,12 @@ public final class BusyFlightsResponse {
     private BigDecimal fare;
     private String departureAirportCode;
     private String destinationAirportCode;
-    private String departureDate;
-    private String arrivalDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime departureDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime arrivalDate;
 
-    public BusyFlightsResponse(String airline, String supplier, BigDecimal fare, String departureAirportCode, String destinationAirportCode, String departureDate, String arrivalDate) {
+    public BusyFlightsResponse(String airline, String supplier, BigDecimal fare, String departureAirportCode, String destinationAirportCode, LocalDateTime departureDate, LocalDateTime arrivalDate) {
         this.airline = airline;
         this.supplier = supplier;
         this.fare = fare;
@@ -42,11 +47,11 @@ public final class BusyFlightsResponse {
         this.destinationAirportCode = destinationAirportCode;
     }
 
-    public void setDepartureDate(String departureDate) {
+    public void setDepartureDate(LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }
 
-    public void setArrivalDate(String arrivalDate) {
+    public void setArrivalDate(LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
@@ -70,11 +75,11 @@ public final class BusyFlightsResponse {
         return destinationAirportCode;
     }
 
-    public String getDepartureDate() {
+    public LocalDateTime getDepartureDate() {
         return departureDate;
     }
 
-    public String getArrivalDate() {
+    public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
 

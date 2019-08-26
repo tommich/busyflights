@@ -1,13 +1,18 @@
 package com.travix.medusa.busyflights.domain.toughjet;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Arrays;
 
 public class ToughJetRequest {
 
     private String from;
     private String to;
-    private String outboundDate;
-    private String inboundDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate outboundDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate inboundDate;
     private int numberOfAdults;
 
     public String getFrom() {
@@ -26,19 +31,19 @@ public class ToughJetRequest {
         this.to = to;
     }
 
-    public String getOutboundDate() {
+    public LocalDate getOutboundDate() {
         return outboundDate;
     }
 
-    public void setOutboundDate(final String outboundDate) {
+    public void setOutboundDate(final LocalDate outboundDate) {
         this.outboundDate = outboundDate;
     }
 
-    public String getInboundDate() {
+    public LocalDate getInboundDate() {
         return inboundDate;
     }
 
-    public void setInboundDate(final String inboundDate) {
+    public void setInboundDate(final LocalDate inboundDate) {
         this.inboundDate = inboundDate;
     }
 

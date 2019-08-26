@@ -5,9 +5,11 @@ import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class ToughJetResponse implements SearchEngineResponse {
 
+    //TODO response validation
     @NotNull
     private String carrier;
     @NotNull
@@ -21,9 +23,9 @@ public class ToughJetResponse implements SearchEngineResponse {
     @NotNull
     private String arrivalAirportName;
     @NotNull
-    private String outboundDateTime;
+    private LocalDateTime outboundDateTime;
     @NotNull
-    private String inboundDateTime;
+    private LocalDateTime inboundDateTime;
 
     public String getCarrier() {
         return carrier;
@@ -73,19 +75,19 @@ public class ToughJetResponse implements SearchEngineResponse {
         this.arrivalAirportName = arrivalAirportName;
     }
 
-    public String getOutboundDateTime() {
+    public @NotNull LocalDateTime getOutboundDateTime() {
         return outboundDateTime;
     }
 
-    public void setOutboundDateTime(final String outboundDateTime) {
+    public void setOutboundDateTime(final LocalDateTime outboundDateTime) {
         this.outboundDateTime = outboundDateTime;
     }
 
-    public String getInboundDateTime() {
+    public @NotNull LocalDateTime getInboundDateTime() {
         return inboundDateTime;
     }
 
-    public void setInboundDateTime(final String inboundDateTime) {
+    public void setInboundDateTime(final LocalDateTime inboundDateTime) {
         this.inboundDateTime = inboundDateTime;
     }
 
@@ -109,6 +111,7 @@ public class ToughJetResponse implements SearchEngineResponse {
         return new BusyFlightsResponse(
                 this.getCarrier(),
                 "ToughJet",
+                //TODO discount should be in percentage
                 BigDecimal.valueOf(this.getBasePrice() + this.getBasePrice() * tax - this.getDiscount())
                         .setScale(2, BigDecimal.ROUND_HALF_UP),
                 this.getDepartureAirportName(),

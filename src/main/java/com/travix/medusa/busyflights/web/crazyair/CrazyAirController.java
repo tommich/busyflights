@@ -5,6 +5,7 @@ import com.travix.medusa.busyflights.domain.crazyair.CrazyAirResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class CrazyAirController {
         CrazyAirResponse crazyAirResponse1 = new CrazyAirResponse();
         crazyAirResponse1.setAirline("airline1");
         crazyAirResponse1.setPrice(1.0);
-        crazyAirResponse1.setDepartureDate("dep date 1");
-        crazyAirResponse1.setArrivalDate("ar date 1");
+        crazyAirResponse1.setDepartureDate(LocalDateTime.now());
+        crazyAirResponse1.setArrivalDate(LocalDateTime.now());
         crazyAirResponse1.setDepartureAirportCode("DA1");
         crazyAirResponse1.setDestinationAirportCode("DS1");
         crazyAirResponse1.setCabinclass("1");
@@ -29,8 +30,8 @@ public class CrazyAirController {
         CrazyAirResponse crazyAirResponse2 = new CrazyAirResponse();
         crazyAirResponse2.setAirline("airline2");
         crazyAirResponse2.setPrice(3.0);
-        crazyAirResponse2.setDepartureDate("dep date 2");
-        crazyAirResponse2.setArrivalDate("ar date 2");
+        crazyAirResponse2.setDepartureDate(LocalDateTime.now());
+        crazyAirResponse2.setArrivalDate(LocalDateTime.now());
         crazyAirResponse2.setDepartureAirportCode("DA2");
         crazyAirResponse2.setDestinationAirportCode("DS2");
         crazyAirResponse2.setCabinclass("2");

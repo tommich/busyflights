@@ -1,26 +1,29 @@
 package com.travix.medusa.busyflights.domain.busyflights;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 public class BusyFlightsRequest {
 
-    @Size(min = 3, max = 3)
+    @Size(min = 3, max = 3, message = "origin has to be a 3 letter IATA code(eg. LHR, AMS)")
     private String origin;
-    @Size(min = 3, max = 3)
+    @Size(min = 3, max = 3, message = "destination has to be a 3 letter IATA code(eg. LHR, AMS)")
     private String destination;
 
-
-//    TODO: Improve the validation
     @NotNull
-    private String departureDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate departureDate;
     @NotNull
-    private String returnDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate returnDate;
 
-    @Min(value = 1, message = "numberOfPassangers parameter cannot be lower than 1")
-    @Max(value = 4, message = "numberOfPassangers parameter cannot be greater than 4")
+    @Min(value = 1, message = "numberOfPassengers parameter cannot be lower than 1")
+    @Max(value = 4, message = "numberOfPassengers parameter cannot be greater than 4")
     private int numberOfPassengers;
 
     public String getOrigin() {
@@ -39,19 +42,19 @@ public class BusyFlightsRequest {
         this.destination = destination;
     }
 
-    public String getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(final String departureDate) {
+    public void setDepartureDate(final LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 
-    public String getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(final String returnDate) {
+    public void setReturnDate(final LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
