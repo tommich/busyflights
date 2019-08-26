@@ -13,8 +13,7 @@ import java.util.List;
 public class BusyFlightsController {
 
     @Autowired
-    private
-    BusyFlightsService busyFlightsService;
+    private BusyFlightsService busyFlightsService;
 
 //http://localhost:8080/busyflights/flights?origin=adf&destination=adf&departureDate=adf&returnDate=adf&numberOfPassengers=2
 

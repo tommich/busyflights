@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public final class BusyFlightsResponse {
 
@@ -81,6 +82,21 @@ public final class BusyFlightsResponse {
 
     public LocalDateTime getArrivalDate() {
         return arrivalDate;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BusyFlightsResponse that = (BusyFlightsResponse) o;
+        return Objects.equals(airline, that.airline) &&
+                Objects.equals(supplier, that.supplier) &&
+                Objects.equals(fare, that.fare) &&
+                Objects.equals(departureAirportCode, that.departureAirportCode) &&
+                Objects.equals(destinationAirportCode, that.destinationAirportCode) &&
+                Objects.equals(departureDate, that.departureDate) &&
+                Objects.equals(arrivalDate, that.arrivalDate);
     }
 
     @Override

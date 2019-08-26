@@ -2,18 +2,14 @@ package com.travix.medusa.busyflights.web.busyflights;
 
 import com.travix.medusa.busyflights.BusyFlightsOfferComparator;
 import com.travix.medusa.busyflights.RequestSender;
+import com.travix.medusa.busyflights.RequestSenderImpl;
 import com.travix.medusa.busyflights.SearchEngineResponse;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsRequest;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
-import com.travix.medusa.busyflights.domain.crazyair.CrazyAirResponse;
-import com.travix.medusa.busyflights.domain.toughjet.ToughJetResponse;
-import com.travix.medusa.busyflights.web.crazyair.CrazyAirParamsProvider;
-import com.travix.medusa.busyflights.web.toughjet.ToughJetParamsProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -23,19 +19,20 @@ import java.util.stream.Stream;
 @Service
 public class BusyFlightsServiceImpl implements BusyFlightsService {
 
-    @Autowired
     private BusyFlightsOfferComparator busyFlightsOfferComparator;
+
+    private List<RequestSender> requestSenders;
+
+    @Autowired
+    public BusyFlightsServiceImpl(BusyFlightsOfferComparator busyFlightsOfferComparator,
+                                  List<RequestSender> requestSenders) {
+        this.busyFlightsOfferComparator = busyFlightsOfferComparator;
+        this.requestSenders = requestSenders;
+        System.out.println(requestSenders);
+    }
 
     @Override
     public List<BusyFlightsResponse> getBusyFlights(BusyFlightsRequest request) {
-        List<RequestSender> requestSenders = Arrays.asList(
-                new RequestSender<>(new CrazyAirParamsProvider(), CrazyAirResponse[].class),
-                new RequestSender<>(new ToughJetParamsProvider(), ToughJetResponse[].class)
-                //TODO: For more search engines just provide new  EngineProvider
-                //      - implementation of ParamsProvider
-                //  and EngineResponse class
-                //      - implementation of SearchEngineResponse.
-        );
 
         final int numberOfPassengers = request.getNumberOfPassengers();
 
