@@ -3,8 +3,6 @@ package com.travix.medusa.busyflights.domain.crazyair;
 import com.travix.medusa.busyflights.SearchEngineResponse;
 import com.travix.medusa.busyflights.domain.busyflights.BusyFlightsResponse;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

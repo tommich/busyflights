@@ -111,8 +111,8 @@ public class ToughJetResponse implements SearchEngineResponse {
         return new BusyFlightsResponse(
                 this.getCarrier(),
                 "ToughJet",
-                //TODO discount should be in percentage
-                BigDecimal.valueOf(this.getBasePrice() + this.getBasePrice() * tax - this.getDiscount())
+                BigDecimal.valueOf(basePrice + basePrice * tax
+                        - (basePrice + basePrice * tax) * discount)
                         .setScale(2, BigDecimal.ROUND_HALF_UP),
                 this.getDepartureAirportName(),
                 this.getArrivalAirportName(),
